@@ -1,19 +1,18 @@
 {
+  "lang": "en-PH",
+  "id": "espesyal",
   "name": "Ikaw ay Espesyal",
   "short_name": "Espesyal",
   "description": "Daily positive affirmations for Filipino kids growing up abroad",
+  "categories": ["education", "lifestyle", "kids"],
   "start_url": "/index.html",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#1A1035",
   "theme_color": "#1A1035",
-  "lang": "en-PH",
-  "id": "espesyal",
-  "categories": ["education", "lifestyle", "kids"],
   "theme_color": "purple",
   "orientation": "portrait",
-  "icons": [
-  
+  "icons": [  
     {
       "src": "https://github.githubassets.com/assets/app-icon-192-bcc967ab9829.png",
       "type": "image/png",
