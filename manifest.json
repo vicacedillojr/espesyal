@@ -13,19 +13,19 @@
   "orientation": "portrait",
   "icons": [  
     {
-      "src": "icon-192.png",
+      "src": "wicon-192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "icon-512.png",
+      "src": "wicon-512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
   ],
   "screenshots" : [
   {
-    "src": "icon-512.png",
+    "src": "wicon-512.png",
     "sizes": "512x512",
     "type": "image/png",
   }
