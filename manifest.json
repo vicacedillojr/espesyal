@@ -13,19 +13,19 @@
   "orientation": "portrait",
   "icons": [  
     {
-      "src": "https://github.githubassets.com/assets/app-icon-192-bcc967ab9829.png",
+      "src": "icon-192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "https://github.githubassets.com/assets/app-icon-512-7f9c4ff2e960.png",
+      "src": "icon-512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
   ],
   "screenshots" : [
   {
-    "src": "https://github.githubassets.com/assets/app-icon-512-7f9c4ff2e960.png",
+    "src": "icon-512.png",
     "sizes": "512x512",
     "type": "image/png",
   }
