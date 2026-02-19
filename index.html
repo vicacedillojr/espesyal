@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ikaw ay Espesyal · You Are Special</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1A1035">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Espesyal">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Nunito:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sun: #FF6B2B;
+    --gold: #FFB830;
+    --sky: #0EA5E9;
+    --sea: #0D7ABD;
+    --sand: #FFF5E6;
+    --deep: #1A1035;
+    --pink: #FF4D8B;
+    --green: #22C97A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--deep);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    background: radial-gradient(ellipse at 20% 50%, #2D0B4E 0%, #1A1035 60%);
+    overflow: hidden;
+  }
+
+  .bg::before {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    left: -50px;
+    right: -50px;
+    height: 300px;
+    background: linear-gradient(to top, #FF6B2B55, transparent);
+    border-radius: 50%;
+    animation: breathe 6s ease-in-out infinite;
+  }
+
+  .star {
+    position: absolute;
+    border-radius: 50%;
+    background: white;
+    animation: twinkle var(--dur, 3s) ease-in-out infinite var(--delay, 0s);
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.2; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.4); }
+  }
+
+  @keyframes breathe {
+    0%, 100% { transform: scaleX(1) translateY(0); opacity: 0.6; }
+    50% { transform: scaleX(1.1) translateY(-20px); opacity: 1; }
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 420px;
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .header { text-align: center; }
+
+  .tagline {
+    font-family: 'Baloo 2', cursive;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.9;
+  }
+
+  .app-title {
+    font-family: 'Baloo 2', cursive;
+    font-size: 32px;
+    font-weight: 800;
+    color: white;
+    line-height: 1.1;
+    margin-top: 4px;
+  }
+
+  .app-title span {
+    background: linear-gradient(135deg, var(--gold), var(--sun));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .day-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 100px;
+    padding: 6px 16px;
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .day-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 8px var(--green);
+  }
+
+  .card {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 28px;
+    padding: 36px 28px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s;
+    min-height: 260px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .card:active { transform: scale(0.98); }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--sun), var(--gold), var(--pink));
+    border-radius: 28px 28px 0 0;
+  }
+
+  .emoji-big {
+    font-size: 56px;
+    line-height: 1;
+    animation: float 4s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .affirmation-en {
+    font-family: 'Baloo 2', cursive;
+    font-size: 22px;
+    font-weight: 800;
+    color: white;
+    line-height: 1.3;
+  }
+
+  .affirmation-fil {
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 600;
+    opacity: 0.9;
+    line-height: 1.4;
+  }
+
+  .swipe-hint {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    margin-top: 4px;
+  }
+
+  .dots {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 220px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .dot.active {
+    background: var(--gold);
+    box-shadow: 0 0 10px var(--gold);
+    transform: scale(1.3);
+  }
+
+  .btn-row {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .btn {
+    flex: 1;
+    padding: 16px;
+    border: none;
+    border-radius: 16px;
+    font-family: 'Baloo 2', cursive;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.5px;
+  }
+
+  .btn:active { transform: scale(0.96); }
+
+  .btn-prev {
+    background: rgba(255,255,255,0.08);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .btn-next {
+    background: linear-gradient(135deg, var(--sun), var(--gold));
+    color: white;
+    box-shadow: 0 4px 20px rgba(255,107,43,0.4);
+  }
+
+  .footer {
+    font-size: 12px;
+    color: rgba(255,255,255,0.25);
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  .card.fade-out {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.25s, transform 0.25s;
+  }
+  .card.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+</style>
+</head>
+<body>
+
+<div class="bg" id="bg"></div>
+
+<div class="container">
+  <div class="header">
+    <div class="tagline">Para sa mga Batang Pilipino</div>
+    <div class="app-title">Ikaw ay <span>Espesyal</span></div>
+  </div>
+
+  <div class="day-badge">
+    <div class="day-dot"></div>
+    <span id="day-label">Affirmation of the Day</span>
+  </div>
+
+  <div class="card" id="card" onclick="nextAffirmation()">
+    <div class="emoji-big" id="emoji">🌺</div>
+    <div class="affirmation-en" id="aff-en">Loading...</div>
+    <div class="affirmation-fil" id="aff-fil"></div>
+    <div class="swipe-hint">Tap to change · I-tap para palitan</div>
+  </div>
+
+  <div class="dots" id="dots"></div>
+
+  <div class="btn-row">
+    <button class="btn btn-prev" onclick="prevAffirmation()">← Nakaraan</button>
+    <button class="btn btn-next" onclick="nextAffirmation()">Susunod →</button>
+  </div>
+
+  <div class="footer">
+    Made with 💛 for Filipino kids growing up around the world<br>
+    Para sa mga batang Pilipino sa buong mundo
+  </div>
+</div>
+
+<script>
+const affirmations = [
+  { emoji: "🌺", en: "You are beautiful inside and out — just like you are.", fil: "Maganda ka sa loob at labas — tulad ng pagkakalikha sa iyo." },
+  { emoji: "🌟", en: "Being Filipino is a superpower. Your culture is your strength.", fil: "Ang pagiging Pilipino ay isang kapangyarihan. Ang iyong kultura ay iyong lakas." },
+  { emoji: "🏝️", en: "You belong here AND there. You are welcome in both worlds.", fil: "Nariyan ka at narito ka rin. Tinatanggap ka sa dalawang mundo." },
+  { emoji: "💪", en: "You are brave. It takes courage to grow up between two cultures.", fil: "Matapang ka. Nangangailangan ng tapang na lumaki sa pagitan ng dalawang kultura." },
+  { emoji: "🌊", en: "Like the ocean, you are deep, powerful, and full of wonders.", fil: "Tulad ng karagatan, malalim ka, makapangyarihan, at puno ng mga kaguluhan." },
+  { emoji: "🍚", en: "Your roots feed you like rice feeds the soul. Be proud of where you come from.", fil: "Pinakakain ka ng iyong mga ugat tulad ng kanin sa kaluluwa. Ipagmalaki ang iyong pinagmulan." },
+  { emoji: "✨", en: "You are smart. Your bilingual brain is extraordinary.", fil: "Matalino ka. Ang iyong utak na marunong sa dalawang wika ay kahanga-hanga." },
+  { emoji: "🤝", en: "Bayanihan — helping others is in your heart. That makes you wonderful.", fil: "Bayanihan — ang pagtulong sa iba ay nasa puso mo. Dahil doon, kamangha-mangha ka." },
+  { emoji: "🌈", en: "You don't have to choose. You can be Filipino and wherever you are, all at once.", fil: "Hindi mo kailangang pumili. Maaari kang maging Pilipino at maging kung nasaan ka man, nang sabay." },
+  { emoji: "🦅", en: "You were born to soar. The Philippines and the world are both yours.", fil: "Ipinanganak kang lumayo nang mataas. Ang Pilipinas at ang mundo ay sa iyo kapwa." },
+  { emoji: "💛", en: "Your family loves you across oceans and time zones.", fil: "Mahal ka ng iyong pamilya sa kabila ng mga karagatan at oras." },
+  { emoji: "🎉", en: "You are enough, exactly as you are today.", fil: "Sapat ka na, ganap na ikaw ngayon." },
+  { emoji: "🌸", en: "Being different is your gift. The world needs your unique story.", fil: "Ang pagiging naiiba ay iyong kaloob. Kailangan ng mundo ang iyong natatanging kwento." },
+  { emoji: "🔥", en: "You have the spirit of a warrior and the heart of a healer.", fil: "Mayroon kang diwa ng isang mandirigma at puso ng isang tagapagpagaling." },
+  { emoji: "🌍", en: "Growing up abroad makes you a bridge between worlds. That is a beautiful thing.", fil: "Ang paglaki sa ibang bansa ay ginagawa kang tulay sa pagitan ng mga mundo. Maganda yun." },
+  { emoji: "🎶", en: "Your voice matters. Speak up — in English, Filipino, or any language your heart speaks.", fil: "Mahalaga ang iyong boses. Magsalita — sa Ingles, Filipino, o anumang wika ng iyong puso." },
+  { emoji: "🌻", en: "You grow stronger every single day.", fil: "Lalong lumalaki ang iyong lakas araw-araw. Lagi kang lumalago." },
+  { emoji: "🦁", en: "Courage is speaking your native language even when it feels hard.", fil: "Ang tapang ay ang pagsasalita ng iyong katutubong wika kahit mahirap minsan." },
+  { emoji: "🙏", en: "Your ancestors were strong. That strength lives in you too.", fil: "Matibay ang iyong mga ninuno. Ang lakas na iyon ay nabubuhay din sa iyo." },
+  { emoji: "💖", en: "You are loved. Mahal ka. Always and no matter what.", fil: "Mahal ka. You are loved. Lagi at kahit ano pa man." }
+];
+
+function getTodayIndex() {
+  const now = new Date();
+  const start = new Date(2024, 0, 1);
+  const day = Math.floor((now - start) / (1000 * 60 * 60 * 24));
+  return day % affirmations.length;
+}
+
+let current = getTodayIndex();
+
+function renderDots() {
+  const container = document.getElementById('dots');
+  container.innerHTML = '';
+  affirmations.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'dot' + (i === current ? ' active' : '');
+    dot.onclick = () => goTo(i);
+    container.appendChild(dot);
+  });
+}
+
+function renderCard(animate) {
+  const card = document.getElementById('card');
+  const a = affirmations[current];
+
+  const update = () => {
+    document.getElementById('emoji').textContent = a.emoji;
+    document.getElementById('aff-en').textContent = a.en;
+    document.getElementById('aff-fil').textContent = a.fil;
+  };
+
+  if (animate) {
+    card.classList.add('fade-out');
+    setTimeout(() => {
+      update();
+      card.classList.remove('fade-out');
+      card.classList.add('fade-in');
+      setTimeout(() => card.classList.remove('fade-in'), 300);
+    }, 250);
+  } else {
+    update();
+  }
+
+  const todayIdx = getTodayIndex();
+  document.getElementById('day-label').textContent =
+    current === todayIdx
+      ? "Affirmation of the Day · Ngayon"
+      : `Affirmation ${current + 1} of ${affirmations.length}`;
+
+  renderDots();
+}
+
+function nextAffirmation() {
+  current = (current + 1) % affirmations.length;
+  renderCard(true);
+}
+
+function prevAffirmation() {
+  current = (current - 1 + affirmations.length) % affirmations.length;
+  renderCard(true);
+}
+
+function goTo(i) {
+  current = i;
+  renderCard(true);
+}
+
+function generateStars() {
+  const bg = document.getElementById('bg');
+  for (let i = 0; i < 60; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    const size = Math.random() * 3 + 1;
+    star.style.cssText = `width:${size}px;height:${size}px;top:${Math.random()*80}%;left:${Math.random()*100}%;--dur:${2+Math.random()*4}s;--delay:${Math.random()*4}s;`;
+    bg.appendChild(star);
+  }
+}
+
+let startX = 0;
+const card = document.getElementById('card');
+card.addEventListener('touchstart', e => startX = e.touches[0].clientX, { passive: true });
+card.addEventListener('touchend', e => {
+  const diff = startX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 40) diff > 0 ? nextAffirmation() : prevAffirmation();
+}, { passive: true });
+
+generateStars();
+renderCard(false);
+
+// Register service worker for PWA/offline support
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  });
+}
+</script>
+</body>
+</html>
